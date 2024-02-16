@@ -124,3 +124,12 @@ if (!empty($notes)) {
 ?>
 </div>
 </body>
+
+<script>
+document.addEventListener('keydown', function(event) {
+    if (event.ctrlKey && event.key === 'Enter') {
+        event.preventDefault();
+        document.getElementById('text').form.submit();
+    }
+});
+</script>

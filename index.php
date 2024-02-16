@@ -112,7 +112,7 @@ if (!empty($notes)) {
     foreach ($notes as $key => $value) {
         echo "
         <div class='textbox'>
-        ".md(html_entity_decode($value))."
+        ".md($value)."
         <hr>
         <div class='btn-group'>
         <a href='?edit=$key' class='btn btn-primary'>".icon("pen")." Edit</a>

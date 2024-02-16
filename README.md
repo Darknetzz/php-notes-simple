@@ -6,4 +6,3 @@
 Just git clone to your (PHP-supported) webserver and start taking notes. :)
 
 Thanks to https://github.com/michelf/php-markdown for markdown support!
-```

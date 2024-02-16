@@ -90,12 +90,14 @@ if (isset($_GET['edit'])) {
                 if (isset($_GET['edit'])) {
                     echo "
                     <input type='hidden' name='id' value='$_GET[edit]'>
-                    <button type='submit' class='btn btn-success' name='update'>".icon('floppy')." Update</button>
+                    <input type='hidden' name='update' value='1'>
+                    <button type='submit' class='btn btn-success'>".icon('floppy')." Update</button>
                     <a href='index.php' class='btn btn-secondary'>".icon('x-circle')." Cancel</a>";
                 } else {
-                    echo '
-                    <button type="submit" class="btn btn-success" name="add">'.icon('plus-circle').' Add</button>
-                    <button type="submit" class="btn btn-danger" name="delall">'.icon('trash').' Delete all</button>';
+                    echo "
+                    <input type='hidden' name='add' value='1'>
+                    <button type='submit' class='btn btn-success'>".icon('plus-circle')." Add</button>
+                    <button type='submit' class='btn btn-danger' name='delall'>".icon('trash')." Delete all</button>";
                 }
                 ?>
             </div>
@@ -126,10 +128,11 @@ if (!empty($notes)) {
 </body>
 
 <script>
-document.addEventListener('keydown', function(event) {
+// Submit form with Ctrl+Enter
+$("#text").keydown(function(event) {
     if (event.ctrlKey && event.key === 'Enter') {
         event.preventDefault();
-        document.getElementById('text').form.submit();
+        $("#text").closest('form').submit();
     }
 });
 </script>

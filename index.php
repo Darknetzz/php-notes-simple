@@ -23,7 +23,8 @@
 <div class="container" style="margin-top:5px">
 
 <?php
-require_once "functions.php";
+require_once("functions.php");
+require_once("config.php");
 $notesFile = "notes.json";
 $notes = getNotes($notesFile);
 $edit  = "";
@@ -110,6 +111,9 @@ if (isset($_GET['edit'])) {
 $notes = getNotes("notes.json");
 if (!empty($notes)) {
     foreach ($notes as $key => $value) {
+        if (STRICT_LINEBREAK === False) {
+            $value = str_replace("\n", "\n\n", $value);
+        }
         echo "
         <div class='textbox'>
         ".md($value)."

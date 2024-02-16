@@ -3,4 +3,4 @@
 
  For a more complex and overengineered note page, see https://github.com/Darknetzz/php-notes
 
-Just git clone to your webserver and start taking notes. :)
+Just git clone to your (PHP-supported) webserver and start taking notes. :)

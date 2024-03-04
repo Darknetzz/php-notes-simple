@@ -20,6 +20,10 @@ function getNotes(string $notesFile = "notes.json") {
         $notes = file_get_contents($notesFile);
         $notes = json_decode($notes, True);
     }
+    
+    // Sort by descending array index/key
+    krsort($notes);
+
     return $notes;
 }
 

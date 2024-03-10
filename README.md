@@ -13,3 +13,4 @@ git clone https://github.com/Darknetzz/php-notes-simple.git
 
 
 Thanks to https://github.com/michelf/php-markdown for markdown support!
+Thanks to https://showdownjs.com for markdown support!

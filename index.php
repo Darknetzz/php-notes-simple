@@ -78,6 +78,9 @@ if (isset($_GET['del'])) {
 
 if (isset($_GET['edit'])) {
     $edit = $notes[$_GET['edit']];
+    if (is_array($edit)) {
+        $edit = $edit['note'];
+    }
 }
 ?>
 

@@ -30,8 +30,9 @@ function getNotes(string $notesFile = "notes.json") {
 /* ───────────────────────────────────────────────────────────────────── */
 /*                             md (markdown)                             */
 /* ───────────────────────────────────────────────────────────────────── */
-function md(string $text) {
-    require_once("Michelf/Markdown.inc.php");
-    return \Michelf\Markdown::defaultTransform($text);
-}
+# NOTE: No longer using this, using showdownjs instead.
+// function md(string $text) {
+//     require_once("Michelf/Markdown.inc.php");
+//     return \Michelf\Markdown::defaultTransform($text);
+// }
 ?>

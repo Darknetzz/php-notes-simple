@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/2.1.0/showdown.min.js"></script>
     <style>
         .textbox {
             border: 1px solid #555;
@@ -117,7 +117,7 @@ if (!empty($notes)) {
         }
         echo "
         <div class='textbox'>
-        ".md($value)."
+        <div class='md'>$value</div>
         <hr>
         <div class='btn-group'>
         <a href='?edit=$key' class='btn btn-primary'>".icon("pen")." Edit</a>
@@ -139,5 +139,12 @@ $("#text").keydown(function(event) {
         event.preventDefault();
         $("#text").closest('form').submit();
     }
+});
+
+$(".md").each(function() {
+    var converter = new showdown.Converter(),
+        text      = $(this).text(),
+        html      = converter.makeHtml(text);
+    $(this).html(html);
 });
 </script>

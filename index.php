@@ -32,7 +32,7 @@ $edit  = "";
 
 if (isset($_POST['add']) && !empty($_POST['text'])) {
     $safe_text = htmlspecialchars($_POST['text']);
-    array_push($notes, $safe_text);
+    array_push($notes, ["note" => $safe_text, "date" => date("Y-m-d H:i:s")]);
     $notes_json = json_encode($notes);
     file_put_contents($notesFile, $notes_json);
     echo alert("Note added successfully.", "success");
@@ -40,7 +40,7 @@ if (isset($_POST['add']) && !empty($_POST['text'])) {
 
 if (isset($_POST['update']) && !empty($_POST['text'])) {
     $safe_text = htmlspecialchars($_POST['text']);
-    $notes[$_POST['id']] = $safe_text;
+    $notes[$_POST['id']] = ["note" => $safe_text, "date" => date("Y-m-d H:i:s")];
     $notes_json = json_encode($notes);
     file_put_contents($notesFile, $notes_json);
     echo alert("Note updated successfully.", "success");
@@ -112,17 +112,26 @@ if (isset($_GET['edit'])) {
 $notes = getNotes("notes.json");
 if (!empty($notes)) {
     foreach ($notes as $key => $value) {
+        $note = $value;
+        $date = "";
+        if (is_array($value)) {
+            $note = $value['note'];
+            $date = $value['date'];
+        }
         if (STRICT_LINEBREAK === False) {
             $value = str_replace("\n", "\n\n", $value);
         }
         echo "
         <div class='textbox'>
-        <div class='md'>$value</div>
-        <hr>
-        <div class='btn-group'>
-        <a href='?edit=$key' class='btn btn-primary'>".icon("pen")." Edit</a>
-        <a href='?del=$key' class='btn btn-danger'>".icon('trash')." Delete</a>
-        </div>
+            <div class='d-flex justify-content-between'>
+                <div class='md'>$note</div>
+                ".(!empty($date) ? "<div class='text-muted' title='$date'>".relativeTime($date)."</div>" : "")."
+            </div>
+            <hr>
+            <div class='btn-group'>
+                <a href='?edit=$key' class='btn btn-primary'>".icon("pen")." Edit</a>
+                <a href='?del=$key' class='btn btn-danger'>".icon('trash')." Delete</a>
+            </div>
         </div>";
     }
 } else {

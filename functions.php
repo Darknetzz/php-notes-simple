@@ -27,6 +27,29 @@ function getNotes(string $notesFile = "notes.json") {
     return $notes;
 }
 
+/* ────────────────────────────────────────────────────────────────────────── */
+/*                                relativeTime                                */
+/* ────────────────────────────────────────────────────────────────────────── */
+function relativeTime(string $date) {
+    $date = new DateTime($date);
+    $now = new DateTime();
+    $diff = $now->diff($date);
+
+    if ($diff->y > 0) {
+        return $diff->format('%y years ago');
+    } elseif ($diff->m > 0) {
+        return $diff->format('%m months ago');
+    } elseif ($diff->d > 0) {
+        return $diff->format('%d days ago');
+    } elseif ($diff->h > 0) {
+        return $diff->format('%h hours ago');
+    } elseif ($diff->i > 0) {
+        return $diff->format('%i minutes ago');
+    } else {
+        return 'Just now';
+    }
+}
+
 /* ───────────────────────────────────────────────────────────────────── */
 /*                             md (markdown)                             */
 /* ───────────────────────────────────────────────────────────────────── */
